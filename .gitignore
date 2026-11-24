@@ -1,3 +1,25 @@
-/bin/
-.settings/*
+# Compiled classes
+*.class
 
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# JARs (already committed for convenience)
+# *.jar
+
+# Build
+bin/
+target/
+
+# Database
+*.sql.bak
