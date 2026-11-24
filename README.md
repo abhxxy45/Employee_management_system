@@ -1,38 +1,119 @@
-This is a Java Swing application for managing employee information. This project was created using JDK 17 and Eclipse 2022-12.
+# Employee Management System
 
-It has the following functionalities:
+Desktop CRUD application for managing employee records using Java Swing and MySQL.
 
-**Add employee:** Allows you to add a new employee to the system by entering their personal and employment details. <br/>
-**Delete employee:** Allows you to delete an existing employee from the system. <br/>
-**Update employee:** Allows you to update the personal and employment details of an existing employee. <br/>
-**Display employee:** Shows a list of all employees in a JTable, with their personal and employment details.
+## Tech Stack
 
-# Classes :
-The application consists of the following classes:
+| Layer | Technology |
+|-------|------------|
+| **Language** | Java |
+| **GUI** | Java Swing |
+| **Database** | MySQL |
+| **Connectivity** | JDBC |
+| **Build** | Eclipse (no Maven/Gradle) |
+| **Charting** | JFreeChart 1.5.6 |
 
-**CreateConnection:** This class is responsible for establishing a connection with a database using JDBC. Edit the CreateConnection.java file to provide your database details. <br/>
-**Operations:** This class contains methods for inserting, deleting, and updating employee records in the database. <br/>
-**Query:** This class contains methods for retrieving employee records from the database. <br/>
-**Windows:** This is the main GUI class, which handles user interactions and displays the employee information in a JTable. <br/>
-**Employee:** This class stores the personal and employment details of a single employee. <br/>
+## Project Structure
 
-# Prerequisites
-**MySQL database:** The application uses a MySQL database to store employee records. The `employee.sql` file contains the SQL query to create the necessary database and tables.
+```
+Employee_management_system/
+├── src/                          # Java source (default package)
+│   ├── *.java                    # Main application classes
+├── employee.sql                  # Database schema
+├── mysql-connector-java-8.0.30.jar  # MySQL JDBC driver
+├── jfreechart-1.5.6.jar         # Charting library
+├── .classpath                    # Eclipse classpath
+├── .project                      # Eclipse project
+└── README.md
+```
 
-**MySQL Connector library:** Add the `mysql-connector-java-8.0.22.jar` file to your classpath. This library is required to establish a connection with the MySQL database using JDBC.
+## Features
 
-# How to run the application : 
-1. Clone the repository to your local machine.
-2. Open the project in an IDE such as Eclipse or IntelliJ.
-3. Build and run the project run `window.java` file.
-4. The application will open in a new window. Follow the prompts to add, delete, update, or display employees.
+- **Employee CRUD**: Create, read, update, delete employee records
+- **Search & Filter**: Find employees by ID, name, department
+- **Data Validation**: Input validation for all fields
+- **MySQL Integration**: Persistent storage via JDBC
+- **Charting**: JFreeChart visualizations (reports)
+- **Swing GUI**: Desktop interface with forms and tables
 
-## Note :
-This application is just a basic example of how to build an employee management system using Java Swing. You can modify and expand upon the code to add additional features and functionality as needed.
+## Database Schema
 
-## Author : Abhay Verma
+The `employee.sql` file creates:
+```sql
+CREATE DATABASE IF NOT EXISTS employee_db;
+USE employee_db;
 
+CREATE TABLE employees (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(20),
+    department VARCHAR(50),
+    designation VARCHAR(50),
+    salary DECIMAL(10,2),
+    join_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
+## Setup Instructions
 
+### Prerequisites
+- Java 8+ (JDK)
+- MySQL 8.0+
+- Eclipse IDE (or any Java IDE)
 
+### Installation
 
+```bash
+# Clone repository
+git clone https://github.com/abhxxy45/Employee_management_system.git
+cd Employee_management_system
+
+# Setup database
+mysql -u root -p < employee.sql
+
+# Open in Eclipse
+# File → Import → Existing Projects into Workspace
+# Select project root directory
+
+# Add JARs to Build Path:
+# Right-click project → Build Path → Configure Build Path
+# Libraries → Add External JARs → Select mysql-connector-java-8.0.30.jar and jfreechart-1.5.6.jar
+
+# Run Main class
+```
+
+### Database Configuration
+
+Update database connection in the main Java class:
+```java
+String url = "jdbc:mysql://localhost:3306/employee_db";
+String user = "root";
+String password = "your_password";
+```
+
+## Building & Running
+
+### In Eclipse
+1. Import as existing project
+2. Add JARs to build path
+3. Run `Main.java` (or equivalent entry point)
+
+### Command Line (if compiled)
+```bash
+javac -cp ".:mysql-connector-java-8.0.30.jar:jfreechart-1.5.6.jar" src/*.java
+java -cp ".:mysql-connector-java-8.0.30.jar:jfreechart-1.5.6.jar" Main
+```
+
+## Screenshots
+
+*To be added*
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+---
+
+**Repository**: https://github.com/abhxxy45/Employee_management_system
